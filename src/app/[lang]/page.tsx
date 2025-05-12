@@ -2,8 +2,13 @@ import Cv from "../../components/features/cv";
 import Sidebar from "../../components/features/sidebar"
 import { translations } from '@/translations';
 
-export default async function Home({ params }: { params: { lang: 'es' | 'en' } }) {
-  // Await the entire params object first
+type Props = {
+  params: Promise<{
+    lang: 'es' | 'en'
+  }>
+}
+
+export default async function Home({ params }: Props) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   const t = translations[lang];
